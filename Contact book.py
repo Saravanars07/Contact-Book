@@ -49,8 +49,8 @@ while True:
             print(f"{name} : {phone}")
         delete = input("Enter name to delete: ")
         if delete in contacts:
-            phone=contacts[delete]          # Store phone before deleting
-            print(f"{delete}:{phone}")      # Show which contact is being deleted
+            phone=contacts[delete]          
+            print(f"{delete}:{phone}")      
             del contacts[delete]
             print("Contact deleted!")
         else:
