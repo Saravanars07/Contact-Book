@@ -98,3 +98,79 @@ The application handles:
   - Duplicate contacts
   - Invalid menu choices
   - Search/delete of non-existent contacts
+
+
+# Contact Book V1.1
+
+This document describes the recent changes made to the **phone number input** and **delete contact** functions in the Contact Book Python project.
+
+---
+
+## 📞 Phone Number Function Changes
+
+- **Input Validation:**  
+  - Phone number cannot be empty.
+  - Only digits are allowed.
+  - Length must be between 1 and 10 digits.
+  - Duplicate phone numbers are not allowed.
+
+- **User Feedback:**  
+  - Clear error messages are shown for invalid input.
+
+```
+while True:
+    phone = input("Enter a Phone Number (1-10 digits): ").strip()
+    if not phone:
+        print("Error: Phone number cannot be empty. Please try again.")
+    elif not phone.isdigit():
+        print("Error: Phone number must contain only numbers. Please try again.")
+    elif len(phone) < 1 or len(phone) > 10:
+        print("Error: Phone number must be 1 to 10 digits long. Please try again.")
+    elif phone in contacts.values():
+        print("Error: Phone number already exists. Please try again.")
+    else:
+        contacts[name] = phone
+        print("Contact added successfully!")
+        break
+
+```
+
+---
+
+## 🗑️ Delete Contact Function Changes
+
+- **Contact List Display:**  
+  - All contacts are shown before deletion prompt.
+
+- **Accurate Deletion Reporting:**  
+  - Deleted contact’s name and phone number are displayed.
+
+- **Improved Error Handling:**  
+  - Shows "Contact not found!" if the name does not exist.
+
+```
+print("Contact List:")
+for name, phone in contacts.items():
+    print(f"{name} : {phone}")
+
+delete = input("Enter name to delete: ")
+if delete in contacts:
+    phone = contacts[delete]
+    print(f"{delete} : {phone}")
+    del contacts[delete]
+    print("Contact deleted!")
+else:
+    print("Contact not found!")
+
+```
+
+---
+
+## ✅ Summary of Improvements
+
+- Stronger validation and duplicate checking for phone numbers.
+- Users see all contacts before deletion, reducing mistakes.
+- Clear feedback for both successful and failed deletions.
+
+---
+
